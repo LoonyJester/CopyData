@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/CopyData/CopyData/obj/Debug/netcoreapp3.1
+/CopyData/CopyData/bin/Debug/netcoreapp3.1
+/CopyData/CopyData/obj
+/CopyData/.vs/CopyData/v16/.suo
