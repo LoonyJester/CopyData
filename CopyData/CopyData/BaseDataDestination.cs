@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 
 namespace CopyData
 {
@@ -25,7 +26,7 @@ namespace CopyData
             if (count == 0)
             {
                 if (_pointer > 0)
-                    await PutChunkDataAsync(_buffer, _pointer);
+                    await PutChunkDataAsync(_buffer.Take(_pointer).ToArray(), _pointer);
                 await PutChunkDataAsync(buf, 0);
                 return;
             }
@@ -42,7 +43,7 @@ namespace CopyData
 
                 if (_pointer == StrictBufferSizeAsync)
                 {
-                    await PutChunkDataAsync(buf, _pointer);
+                    await PutChunkDataAsync(_buffer, _pointer);
                     _pointer = 0;
                 }
             }
