@@ -5,28 +5,28 @@ using System.Threading.Tasks;
 
 namespace CopyData
 {
-    public class FileWriter : IDataDestination, IDisposable
+    public class FileWriter : BaseDataDestination
     {
-        private readonly StreamWriter stream;
+        private readonly StreamWriter _stream;
 
         public FileWriter(string fileName, Encoding encoding)
         {
             if (string.IsNullOrEmpty(fileName))
                 throw new ArgumentNullException(nameof(fileName));
-            stream = new StreamWriter(new FileStream(fileName, FileMode.OpenOrCreate), encoding ?? Encoding.Default);
+            _stream = new StreamWriter(new FileStream(fileName, FileMode.OpenOrCreate), encoding ?? Encoding.Default);
         }
 
-        public async Task PutData(char[] buf, int count)
+        protected override async Task PutChunkDataAsync(char[] buf, int count)
         {
             if (count > 0)
-                await stream.WriteAsync(buf);
+                await _stream.WriteAsync(buf);
             else
-                stream.Close();
+                _stream.Close();
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
-            stream?.Dispose();
+            _stream?.Dispose();
         }
     }
 }

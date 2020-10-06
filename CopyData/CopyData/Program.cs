@@ -16,9 +16,9 @@ namespace CopyData
                 Console.WriteLine("Type full path to the destination file");
                 var outputFolder = Console.ReadLine();
 
-                using Copier copier = new Copier(new FileReader(inputPath, 512, Encoding.ASCII),
+                using Copier copier = new Copier(new FileReader(inputPath, 650, Encoding.ASCII),
                     new FileWriter(outputFolder, Encoding.ASCII));
-                await copier.Copy();
+                await copier.CopyAsync();
 
                 Console.WriteLine("Copying is done");
 

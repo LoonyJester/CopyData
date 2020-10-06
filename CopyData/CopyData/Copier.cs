@@ -10,14 +10,14 @@ namespace CopyData
 
         public Copier(IDataSource source, IDataDestination destination)
         {
-            this._source = source;
-            this._destination = destination;
+            _source = source;
+            _destination = destination;
         }
 
-        public async Task Copy()
+        public async Task CopyAsync()
         {
             int count = -1;
-            char[] buffer = null;
+            char[] buffer;
             while (count != 0)
             {
                 count = _source.GetData(out buffer);
